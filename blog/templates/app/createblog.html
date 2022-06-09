@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<br><br>
+<div class="center">
+<h2>create a blog</h2>
+
+ <form method="post">
+     {% csrf_token %}
+ <br>
+
+  <input type="text" name="topic" autofocus size="33" min="5" autofocus size="33" placeholder="topic"><br>
+  
+  <textarea name="description" id="" cols="30" rows="3" placeholder="decription" size="35"></textarea>
+
+
+  <input type="submit" value="create blog">
+  
+ 
+ </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{%extends 'main.html' %}
+
+{% block content %}
+<div class="center">
+    <br><br>
+    
+    <strong>USER INFO</strong> &nbsp;
+    &nbsp;<a href="">&#9998;</a>
+       firstname:{{user.first_name}}<br>
+       lastname:{{user.last_name}}<br>
+       usename:{{user.username}}<br>
+       email:{{user.email}}<br>
+       ACTIVE BLOGS
+       
+       <br>
+       
+        {{blogs.count}} blogs available
+        <hr>
+        {% for blog in blogs%}
+          <strong>{{blog.topic}}</strong>&nbsp;
+          
+            <a href="{% url 'deleteblog' blog.id %}">&#10005;</a> &nbsp;
+            <a href="{%url 'editblog' blog.id %}">&#9998;</a>
+           
+          
+          <p>{{blog.description}}</p>
+          @<span>{{blog.blogger.first_name}}</span>
+            posted {{blog.created|timesince}} ago
+         <hr>
+        
+        {% endfor %}
+   
+
+
+
+</div>
+
+
+
+
+{% endblock %}

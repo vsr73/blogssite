@@ -1,0 +1,96 @@
+<html>
+ <head>
+   <title>VSR BLOGGIG WEBSITE</title>
+   <style>
+  ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+
+   .container{ align-content : "center";}
+    .center {
+      color:rgb(24, 26, 28);
+      margin: auto;
+      width: 50%;
+      border: 3px solid red;
+      padding: 10px;
+      align-items: "center";
+      
+       }
+    strong{
+    color:rgb(231, 173, 87);
+          }
+
+</style>
+ </head>
+ 
+ <body id="tester">
+  
+    <!--head bar-->
+    <div id='cssmenu'>
+  <ul>
+  <li><a href="{% url 'home' %}">&#9750;home</a></li>
+  {% if user.is_authenticated %}
+  <li><a href="{% url 'profile' request.user.id %}">user info</a>
+  <li><a href="{% url 'logout' %}">logout</a></li>
+
+  {% else %}
+  <li><a href="{% url 'registeruser' %}">signup</a> </li>
+  
+
+  <li><a href="{% url 'login' %}">Login</a> </li>
+  {% endif %}
+
+  <li><a href="/admin/">Admin</a></li>
+  <li><a href="{% url 'about' %}">About Us</a></li>
+  <li><a href="{% url 'support' %}">Contact Support</a></li>
+
+</ul>
+
+</div>
+
+
+  
+   <!--headbar ends-->
+  
+   {% for message in messages %}
+   <font color="red">{{message}}</font>
+   {% endfor %}
+  
+
+   {% block content %}
+
+
+
+   {% endblock %}
+
+   
+ 
+ </body>
+
+
+</html>

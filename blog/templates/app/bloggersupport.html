@@ -1,0 +1,29 @@
+{%extends 'main.html' %}
+
+{% block content %}
+<br><br>
+{% for message in messages %}
+<font color="red">{{message}}</font>
+{% endfor %}
+
+<div class="center">
+    <h2>contact support team</h2>
+    <form methdo="post">
+        {% csrf_token %}
+       <label for="">name</label><br>
+       <input type="text" name="name" size="33"><br>
+       <label for="">email:</label><br>
+       <input type="text" name="email" size="33" ><br>
+       <label for="">adress:</label><br>
+       <input type="text"name ="address" size="33"><br>
+       <label for="">message</label><br>
+       <textarea name="message" id="" cols="30" rows="3"></textarea><br>
+       <button value="submit">submit</button>
+    </form>
+</div>
+
+
+
+
+
+{% endblock %}

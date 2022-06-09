@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<br><br>
+{%for blog in blogs%}
+<div align="center" >
+   <h2>{{blog.topic}}</h2>
+   <p>{{blog.description}}</p>
+   hosted by{{blog.blogger}}
+   {{blof.created}}
+
+</div>
+
+
+{% endblock %}

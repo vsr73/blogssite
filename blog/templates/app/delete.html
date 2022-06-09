@@ -1,0 +1,15 @@
+{%extends 'main.html' %}
+
+{% block content %}
+<br><br>
+{% if blog %}
+<div class="container">
+    <font color="red">confirm u want delete "{{blog.topic}}" blog
+        <a href="{% url 'confirmdelete' blog.blogger.id %}">confirm delete</a>
+        <br>
+        <a href="{% url 'home' %}">go back</a>
+    </font>
+</div>
+
+{% endif %}
+{% endblock %}
