@@ -2,7 +2,7 @@
 {% extends 'main.html' %}
 {% block content %}
 <br><br>
-<div align = "center">
+<div class="center">
 <h2>register here</h2>
 {% for message in messages %}
  <font color ="red"> {{message}}</font>
@@ -10,19 +10,28 @@
 
 <div>
    <form action="" method="post">
-       {% csrf_token %}
+       {% csrf_token %}<label for="">firstname</label><br>
        <input type="text" name="first_name" placeholder="first_name" required autofocus><br>
        <br>
+       <label for="">lastname</label><br>
        <input type="text" name="last_name" placeholder="last_name"><br>
        <br>
+       <label for="">username</label><br>
        <input type="text" name="username" placeholder="username" required> <br>
        <br>
+       <label for="">email</label><br>
        <input type="text" name="email" placeholder="email field" required><br>
        <br>
-       <input type="text" name="password" placeholder="password" required><br>
+       <label for="">password</label><br>
+       <input type="password" name="password" placeholder="password" required><br>
        <br>
-       <input type="text" name="password2" placeholder="cnfrm password" required><br>
-       <input type="submit" value="register">
+       <label for="">confirm password</label><br>
+       <input type="password" name="password2" placeholder="cnfrm password" required><br>
+       <br>
+       <button class="glow-on-hover" type="submit">register</button>
+    <div class="text-box">
+        <a href="#" class="btn btn-white btn-animate">click me</a>
+    </div
 
     </form>
 </div>

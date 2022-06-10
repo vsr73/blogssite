@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import BlogForm
-from .models import Blogs
+from .models import *
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
@@ -114,18 +114,22 @@ def bloggersupport(request):
     if request.method == 'POST':
         p=request.POST['name']
         q=request.POST['address']
-        r=request.POST['emaill']
+        r=request.POST['email']
         s=request.POST['message']
-        support=blogersupport(name=p,address=q,email=r,message=s)
-        try:
-            support.save()
-            messages.info(request,'response submitted')
-            return redirect('home')
-        except:
-            messages.info(reequest,'error resubmit')
+        support=blogersupport.objects.create(name=p,address=q,email=r,message=s)
+        if len(p)==0 or len(q)==0 or len(r)==0 or len(s) == 0:
+            messages.info(request,'please fill all the details')
             return redirect('support')
-
-    return render(request,'app/bloggersupport.html')
+        else:                 
+            try:
+                support.save()
+                messages.info(request,'request submitted')
+                return redirect('home')
+            except:
+                messages.info(request,'error resubmit')
+                return redirect('support')
+    else:
+        return render(request,'app/bloggersupport.html')
 
 @login_required(login_url='login')
 def userprofile(request,pk):

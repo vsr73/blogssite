@@ -10,8 +10,14 @@
   <h1>HELLO BLOGGER</h1> 
   
   <div align="right">
-  <a href="{% url 'createblog' %}"> create a blog</a>
+    <button class="glow-on-hover" type="button"><a href="{% url 'createblog' %}" class> create a blog</a></button>
   </div>
+
+
+
+
+
+
 
   
     {{blogs.count}} blogs available
@@ -25,8 +31,8 @@
         {% endif %}
      
       <p>{{blog.description}}</p>
-      @<span>{{blog.blogger.first_name}}</span>
-        posted {{blog.created|timesince}} ago
+      <span>@{{blog.blogger.first_name}}
+        posted {{blog.created|timesince}} ago</span>
      <hr>
     
     {% endfor %}

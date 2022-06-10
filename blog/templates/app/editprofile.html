@@ -2,8 +2,8 @@
 
 {% block content %}
 
-<div align = "center">
-    <h2>register here</h2>
+<div  class = "center">
+    <h2>update details here</h2>
     {% for message in messages %}
      <font color ="red"> {{message}}</font>
      {% endfor %}
@@ -19,7 +19,7 @@
            <br>
            <input type="text" name="email" placeholder="email field" value="{{user.email}}"><br>
            <br>
-           <input type="submit" value="register">
+           <button class="glow-on-hover" type="submit">Update details</button>
     
         </form>
     </div>
