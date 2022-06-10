@@ -20,7 +20,7 @@ def registeruser(request):
         p=request.POST['password']
         q=request.POST['password2']
         if p==q:
-            if len(q)>=4:
+            if len(q)>=8:
                 if q.isdigit() == False:
                     if q.islower() == False:
                         if q.isupper() == False:
@@ -43,7 +43,7 @@ def registeruser(request):
                     messages.info(request,'password is entirely numeric')
                     return redirect('registeruser')   
             else:
-                messages.info(request,'password should contain atleast 4 characters')
+                messages.info(request,'password should contain atleast 8 characters')
                 return redirect('registeruser')   
         else:       
             messages.error(request,'password doesnt match')
@@ -55,16 +55,24 @@ def registeruser(request):
 def loginuser(request):
     if request.method=='POST':
         p=request.POST['username']
-        q=request.POST['password']
-        user=User.objects.get(username=p,password=q)
-        authenticate(user)
-        if user.is_authenticated:
-            login(request,user)
-            messages.info(request,'successfully logined')
-            return redirect('home')
-            
+        q=request.POST['password']     
+        try:
+            user=User.objects.get(username=p,password=q)
+            f=1
+
+        except:
+            f=0
+        if f==1:
+            authenticate(user)
+            if user.is_authenticated:
+                login(request,user)
+                messages.info(request,'successfully logined')
+                return redirect('home')
+            else:
+                messages.info(request,'retry login')
+                return redirect('login')
         else:
-            messages.info(request,'retry login')
+            messages.info(request,'details not found try again')
             return redirect('login')
     else:
         return render(request,'app/login.html')
