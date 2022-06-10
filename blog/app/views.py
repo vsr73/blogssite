@@ -20,17 +20,36 @@ def registeruser(request):
         p=request.POST['password']
         q=request.POST['password2']
         if p==q:
-            user=User(first_name=f,last_name=l,username=usnm,email=el,password=p)
-            try:
-                user.save()
-                messages.info(request,'successfully created')
-                return redirect('home')
-            except:
-                messages.error(request,'username exists')
-                return redirect('registeruser')
-        else:
-            messages.info(request,'passwords doesnt match')
-    return render(request,'app/register.html')
+            if len(q)>=4:
+                if q.isdigit() == False:
+                    if q.islower() == False:
+                        if q.isupper() == False:
+                            user=User(first_name=f,last_name=l,username=usnm,email=el,password=p)
+                            try:
+                               user.save()
+                               login(request,user)
+                               messages.info(request,'successfully created and logged in')
+                               return redirect('home')
+                            except:
+                                messages.error(request,'username exists')
+                                return redirect('registeruser')
+                        else:
+                            messages.info(request,'password must contain atleat 1 lowercase,upper case and a numeric casecharacte')
+                            return redirect('registeruser')
+                    else:
+                        messages.info(request,'password must contain atleat 1 lowercase,upper case and a numeric casecharacter')
+                        return redirect('registeruser')
+                else:
+                    messages.info(request,'password is entirely numeric')
+                    return redirect('registeruser')   
+            else:
+                messages.info(request,'password should contain atleast 4 characters')
+                return redirect('registeruser')   
+        else:       
+            messages.error(request,'password doesnt match')
+            return redirect('registeruser')
+    else:
+        return render(request,'app/register.html')
 
 
 def loginuser(request):
@@ -45,7 +64,7 @@ def loginuser(request):
             return redirect('home')
             
         else:
-            messages.info(request,'user doesnt exist')
+            messages.info(request,'retry login')
             return redirect('login')
     else:
         return render(request,'app/login.html')
@@ -120,3 +139,4 @@ def editprofile(request,pk):
                 
     else:
         return render(request,'app/editprofile.html',{'user':user})
+

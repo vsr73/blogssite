@@ -11,17 +11,17 @@
 <div>
    <form action="" method="post">
        {% csrf_token %}
-       <input type="text" name="first_name" placeholder="first_name"><br>
+       <input type="text" name="first_name" placeholder="first_name" required autofocus><br>
        <br>
        <input type="text" name="last_name" placeholder="last_name"><br>
        <br>
-       <input type="text" name="username" placeholder="username"> <br>
+       <input type="text" name="username" placeholder="username" required> <br>
        <br>
-       <input type="text" name="email" placeholder="email field"><br>
+       <input type="text" name="email" placeholder="email field" required><br>
        <br>
-       <input type="text" name="password" placeholder="password"><br>
+       <input type="text" name="password" placeholder="password" required><br>
        <br>
-       <input type="text" name="password2" placeholder="cnfrm password"><br>
+       <input type="text" name="password2" placeholder="cnfrm password" required><br>
        <input type="submit" value="register">
 
     </form>

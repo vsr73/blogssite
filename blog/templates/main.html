@@ -36,20 +36,15 @@ li a:hover:not(.active) {
     .center {
       color:rgb(24, 26, 28);
       margin: auto;
-      width: 80%;
+      width: 50%;
       border: 3px solid red;
-      padding: 10px;
+      padding: 15px;
       align-items: "center";
-      background-color: lightblue;
-      
+      background-color: lightcyan;
        }
     strong{
     color:rgb(231, 173, 87);
           }
-  body {
-    background-color:lightyellow;
-
-}
 
 a {
   color: red;
@@ -62,9 +57,17 @@ a {
      Total height: 80px + (2 * 20px) + (2 * 8px) = 136px
      Content box width: 160px
      Content box height: 80px
+   
 }
 
- 
+form{
+      font-style: italic;
+
+}
+
+body{
+  background-color: bisque;
+}
 
 </style>
  </head>
@@ -99,7 +102,7 @@ a {
    <!--headbar ends-->
   
    {% for message in messages %}
-   <font color="red">{{message}}</font>
+   <strong><font color="red">{{message}}</font></strong>
    {% endfor %}
   
 
