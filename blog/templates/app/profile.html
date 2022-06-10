@@ -1,21 +1,23 @@
 {%extends 'main.html' %}
 
 {% block content %}
+<br><br>
 <div class="center">
-    <br><br>
-    
-    <strong>USER INFO</strong> &nbsp;
-    &nbsp;<a href="">&#9998;</a>
+    <div align="center">
+          <strong>USER INFO</strong> &nbsp;
+    &nbsp;<a href="{% url 'editprofile' user.id %}">&#9998;</a><br></div>
        firstname:{{user.first_name}}<br>
        lastname:{{user.last_name}}<br>
        usename:{{user.username}}<br>
        email:{{user.email}}<br>
+      
+       <hr>
+</div>
+br
+<div class="center">
        ACTIVE BLOGS
-       
+        :<fonr font-family="italic">{{blogs.count}}blogs available</fonr font-family="italic">
        <br>
-       
-        {{blogs.count}} blogs available
-        <hr>
         {% for blog in blogs%}
           <strong>{{blog.topic}}</strong>&nbsp;
           
@@ -29,8 +31,6 @@
          <hr>
         
         {% endfor %}
-   
-
 
 
 </div>

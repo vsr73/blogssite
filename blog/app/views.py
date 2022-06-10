@@ -16,10 +16,11 @@ def registeruser(request):
         f=request.POST['first_name']
         l=request.POST['last_name']
         usnm=request.POST['username']
+        el=request.POST['email']
         p=request.POST['password']
         q=request.POST['password2']
         if p==q:
-            user=User(first_name=f,last_name=l,username=usnm,password=p)
+            user=User(first_name=f,last_name=l,username=usnm,email=el,password=p)
             try:
                 user.save()
                 messages.info(request,'successfully created')
@@ -100,8 +101,22 @@ def bloggersupport(request):
     return render(request,'app/bloggersupport.html')
 
 @login_required(login_url='login')
-
 def userprofile(request,pk):
     user=User.objects.get(id=pk)
     blogs=Blogs.objects.filter(blogger=user).order_by('created').reverse()
     return render(request,'app/profile.html',{'user':user,'blogs':blogs})
+
+def editprofile(request,pk):
+    user=User.objects.get(id=pk)
+    if request.method == 'POST':
+        user.first_name=request.POST['first_name']
+        user.last_name=request.POST['last_name']
+        user.username=request.POST['username']
+        user.email=request.POST['email']
+        user.save()
+        s=str(user.id)
+        messages.info(request,'profile updated')
+        return redirect('/profile/'+s)
+                
+    else:
+        return render(request,'app/editprofile.html',{'user':user})

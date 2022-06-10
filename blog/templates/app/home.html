@@ -2,13 +2,18 @@
 
 
 {% block content %}
-<br><br>
-<h1>HELLO BLOGGER</h1> 
-<div align="left">
-    <a href="{% url 'createblog' %}"> create a blog</a
-</div>
+<div class="home">
 
+  <br><br>
+  
 <div class="center">
+  <h1>HELLO BLOGGER</h1> 
+  
+  <div align="right">
+  <a href="{% url 'createblog' %}"> create a blog</a>
+  </div>
+
+  
     {{blogs.count}} blogs available
     <br>
     {% for blog in blogs%}
@@ -27,6 +32,6 @@
     {% endfor %}
 </div>
 
-
+</div>
 {% endblock %}
 
