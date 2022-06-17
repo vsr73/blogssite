@@ -37,7 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+      'django.contrib.sites',
     'app',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'social_django'
+
 ]
 
 #AUTH_USER_MODEL = 'base.User'
@@ -83,6 +91,14 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+  'social_core.backends.facebook.FacebookOAuth2',
+  'social_core.backends.linkedin.LinkedinOAuth2',
+  'social_core.backends.instagram.InstagramOAuth2',
+  'django.contrib.auth.backends.ModelBackend',
+  'social_core.backends.google.GoogleOAuth2',
+]
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -101,6 +117,14 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+SOCIAL_AUTH_FACEBOOK_KEY='1229888651080595'
+SOCIAL_AUTH_FACEBOOK_SECRET='486b4fa96e26e6c0419830d36fbf7886'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY='111342574821-dtpmkg92l2bgo172ohdf63m2dmjv435s.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET='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'
+SITE_ID=1
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'logout/'
 
 
 # Internationalization

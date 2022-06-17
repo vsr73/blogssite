@@ -29,10 +29,13 @@
        <input type="password" name="password2" placeholder="cnfrm password" required><br>
        <br>
        <button class="glow-on-hover" type="submit">register</button>
-  
+       
     </form>
+    <button class="glow-on-hover" type="submit"><a href="{% url "social:begin" "facebook" %}">register using facebook</a></button> &nbsp;
+    <button class="glow-on-hover" type="submit"><a href="{% url "social:begin" "google-oauth2" %}">register using google</a></button>
 </div>
 
 </div>
+
 
 {% endblock %}

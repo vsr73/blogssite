@@ -1,6 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import User
 # Create your models here.
+from django.contrib.auth.models import User
+    
+
 class Blogger(models.Model):
     host=models.ForeignKey(User,on_delete=models.CASCADE)
     dp=models.ImageField(null=True)
