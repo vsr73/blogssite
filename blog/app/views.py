@@ -157,7 +157,7 @@ def editprofile(request,pk):
     else:
         return render(request,'app/editprofile.html',{'user':user})
 
-@login_required(login_url='login')
+
 def blogprofileview(request,pk):
     user=User.objects.get(id=pk)
     blogs=Blogs.objects.filter(blogger=user).order_by('created').reverse()

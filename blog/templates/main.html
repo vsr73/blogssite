@@ -195,7 +195,7 @@ h1{
     <div id='cssmenu'>
   <ul>
   <li><a href="{% url 'home' %}">&#9750;</a></li>
-  {% if user.is_authenticated %}
+  {% if request.user.is_authenticated %}
   <li><a href="{% url 'profile' request.user.id %}">user info</a>
   <li><a href="{% url 'logout' %}">logout</a></li>
 
