@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-      'django.contrib.sites',
+    'django.contrib.sites',
     'app',
     'allauth',
     'allauth.account',
@@ -45,10 +45,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'social_django'
-
+     
 ]
+SITE_ID=1
 
-#AUTH_USER_MODEL = 'base.User'
+AUTH_USER_MODEL = 'app.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -99,6 +100,8 @@ AUTHENTICATION_BACKENDS = [
   'social_core.backends.google.GoogleOAuth2',
 ]
 
+AUTH_USER_MODEL = 'app.User'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -142,10 +145,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL = '/images/'
 
-STATICFILES_DIRS = [ BASE_DIR / 'static']
+STATIC_URL = 'static/'
+
+MEDIA_URL = '/uploaded/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+MEDIA_ROOT = BASE_DIR / 'static/uploaded'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

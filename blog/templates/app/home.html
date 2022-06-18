@@ -23,19 +23,27 @@
     {{blogs.count}} blogs available
     <br>
     {% for blog in blogs%}
+    <hr>
       <strong>{{blog.topic}}</strong>
       &nbsp;
-        {% if blog.blogger == request.user%}
+        {% if blog.blogger == request.user %}
         <a href="{% url 'deleteblog' blog.id %}">&#10005;</a>
         <a href="{%url 'editblog' blog.id %}">&#9998;</a>
         {% endif %}
      
       <p>{{blog.description}}</p>
-      <span>@{{blog.blogger.first_name}}
-        posted {{blog.created|timesince}} ago</span>
-     <hr>
+      <div>@<a href="{% url 'blogprofileview' blog.blogger.id %}"></a>
+      <img src="{{blog.blogger.dp.url}}" alt="" width="40" height="27">&nbsp;&nbsp;
+      <a href="{% url 'blogprofileview' blog.blogger.id %}">{{blog.blogger}}</a>
+        posted {{blog.created|timesince}} ago</div>
+     
     
     {% endfor %}
+</div>
+<div>
+  {% for user in users %}
+  {{user.username}}
+  {% endfor %}
 </div>
 
 </div>

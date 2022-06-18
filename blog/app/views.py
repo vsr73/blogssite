@@ -1,15 +1,15 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
-from django.contrib.auth.models import User
+
 from django.contrib import messages
 from .forms import BlogForm
 from .models import *
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
-
+    users=User.objects.all()
     blogs=Blogs.objects.filter().order_by('created').reverse()
-    return render(request,'app/home.html',{'blogs':blogs})
+    return render(request,'app/home.html',{'blogs':blogs,'users':users})
 
 def registeruser(request):
     if request.method=='POST':
@@ -25,6 +25,8 @@ def registeruser(request):
                     if q.islower() == False:
                         if q.isupper() == False:
                             user=User(first_name=f,last_name=l,username=usnm,email=el,password=p)
+                            user.save()
+                            login(request,user)
                             try:
                                user.save()
                                login(request,user)
@@ -44,10 +46,11 @@ def registeruser(request):
                     return redirect('registeruser')   
             else:
                 messages.info(request,'password should contain atleast 8 characters')
-                return redirect('registeruser')   
+                return redirect('registeruser')  
         else:       
             messages.error(request,'password doesnt match')
             return redirect('registeruser')
+        
     else:
         return render(request,'app/register.html')
 
@@ -144,11 +147,19 @@ def editprofile(request,pk):
         user.last_name=request.POST['last_name']
         user.username=request.POST['username']
         user.email=request.POST['email']
-        user.save()
+        if len(request.FILES)!=0:
+            user.dp=request.FILES['image']
+        user.save() 
         s=str(user.id)
         messages.info(request,'profile updated')
         return redirect('/profile/'+s)
                 
     else:
         return render(request,'app/editprofile.html',{'user':user})
+
+@login_required(login_url='login')
+def blogprofileview(request,pk):
+    user=User.objects.get(id=pk)
+    blogs=Blogs.objects.filter(blogger=user).order_by('created').reverse()
+    return render(request,'app/blog-profileview.html',{'user':user,'blogs':blogs})
 

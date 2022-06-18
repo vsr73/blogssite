@@ -11,6 +11,6 @@ urlpatterns = [
     path('aboutus/',views.about,name="about"),
     path('contact/',views.bloggersupport,name='support'),
     path('profile/<str:pk>',views.userprofile,name='profile'),
-    path('editprofile/<str:pk>',views.editprofile,name='editprofile')
-    
+    path('editprofile/<str:pk>',views.editprofile,name='editprofile'),
+    path('blogprofileview/<str:pk>',views.blogprofileview,name='blogprofileview')
 ]

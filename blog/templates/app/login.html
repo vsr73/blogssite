@@ -15,9 +15,12 @@
     <br>
     <button class="glow-on-hover" type="submit">login</button>
 
-    <button class="glow-on-hover" type="submit"><a href="{% url "social:begin" "google-oauth2" %}">login using google</a></button>
+ 
 </div>
 </form>
+<div align="center">
+    <button class="glow-on-hover" type="submit"><a href="{% url "social:begin" "google-oauth2" %}">login using google</a></button>
+</div>
 
 {% endblock %}
 

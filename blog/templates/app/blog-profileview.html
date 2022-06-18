@@ -5,7 +5,7 @@
 <div class="center">
     <div align="center">
           <strong>USER INFO</strong> &nbsp;
-          {% if request.user == user %}
+          {% if user == request.user %}
             &nbsp;<a href="{% url 'editprofile' user.id %}" title="edit details">&#9998;</a><br></div>
             <br> <br>
           {% endif %}
@@ -28,11 +28,11 @@
        <br>
         {% for blog in blogs%}
           <strong>{{blog.topic}}</strong>&nbsp;
-          
+          {% if blog.blogger == request.user %}
             <a href="{% url 'deleteblog' blog.id %}">&#10005;</a> &nbsp;
             <a href="{%url 'editblog' blog.id %}">&#9998;</a>
            
-          
+            {% endif %}
           <p>{{blog.description}}</p>
           @<span>{{blog.blogger.first_name}}</span>
             posted {{blog.created|timesince}} ago
